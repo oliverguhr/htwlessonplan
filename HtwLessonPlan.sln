@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C032382F-78E8-42E9-9C1C-CECA67798DD8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{061C7ECC-7416-414E-A2B4-882C3444AA68}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "HtwLessonPlan", "src\HtwLessonPlan\HtwLessonPlan.xproj", "{91A49560-7BBB-4378-9CAC-1FE56F1208AE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{91A49560-7BBB-4378-9CAC-1FE56F1208AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91A49560-7BBB-4378-9CAC-1FE56F1208AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91A49560-7BBB-4378-9CAC-1FE56F1208AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91A49560-7BBB-4378-9CAC-1FE56F1208AE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{91A49560-7BBB-4378-9CAC-1FE56F1208AE} = {C032382F-78E8-42E9-9C1C-CECA67798DD8}
+	EndGlobalSection
+EndGlobal
