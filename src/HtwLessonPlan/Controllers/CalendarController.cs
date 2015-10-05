@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using HtwLessonPlan.Model;
 using Microsoft.AspNet.Mvc;
-using HtwLessonPlan.Model;
-using Microsoft.Net.Http.Headers;
+using System;
+using System.Collections.Generic;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace HtwLessonPlan.Controllers
 {
     [Route("api/[controller]")]
     public class CalendarController : Controller
     {
-        // GET api/calendar/12345  
+        // GET api/calendar/12345
         [Produces("text/calendar")]
         [HttpGet("{studentNumber}")]
         public async Task<IActionResult> Get(string studentNumber)
@@ -27,7 +25,6 @@ namespace HtwLessonPlan.Controllers
             }
             catch (Exception)
             {
-                
                 return new HttpStatusCodeResult((int)HttpStatusCode.InternalServerError);
             }
             var data = System.Text.Encoding.UTF8.GetBytes(Ical.Generate(calendar));
