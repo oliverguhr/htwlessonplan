@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace HtwLessonPlan.Controllers
 {
@@ -15,6 +16,8 @@ namespace HtwLessonPlan.Controllers
         [HttpGet("{studentNumber}/lessons.ical")]
         public async Task<IActionResult> Get(string studentNumber)
         {
+            Trace.TraceInformation("Request for {0}", studentNumber);
+
             HtwWebservice htw = new HtwWebservice(new Uri("http://www2.htw-dresden.de/~rawa/cgi-bin/auf/raiplan_kal.php"));
 
             List<CalendarEvent> calendar = new List<CalendarEvent>();
@@ -23,11 +26,14 @@ namespace HtwLessonPlan.Controllers
             {
                 calendar = await htw.LoadCalendar(studentNumber);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Trace.TraceError(ex.Message);
                 return new HttpStatusCodeResult((int)HttpStatusCode.InternalServerError);
             }
             var data = System.Text.Encoding.UTF8.GetBytes(Ical.Generate(calendar));
+
+            Trace.TraceInformation("Sending ICal with {0} events", calendar.Count);
             return new FileContentResult(data, "text/calendar");
         }
     }
