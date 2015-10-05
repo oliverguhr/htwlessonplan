@@ -9,7 +9,7 @@ namespace HtwLessonPlan.Controllers
     [Route("api/[controller]")]
     public class CalendarController : Controller
     {
-        // GET api/Calendar/5
+        // GET api/calendar/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
