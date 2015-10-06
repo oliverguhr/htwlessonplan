@@ -33,6 +33,7 @@ namespace HtwLessonPlan
             loggerFactory.AddConsole();
 
             // Configure the HTTP request pipeline.
+            app.UseDefaultFiles();
             app.UseStaticFiles();
 
             // Add MVC to the request pipeline.
