@@ -6,8 +6,7 @@
       "launchUrl": "/",
       "environmentVariables": {
         "ASPNET_ENV": "Development"
-      },
-      "sdkVersion": "dnx-coreclr-win-x86.1.0.0-beta7"
+      }
     },
     "kestrel": {
       "commandName": "kestrel",
