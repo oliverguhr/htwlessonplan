@@ -13,7 +13,7 @@ namespace HtwLessonPlan.Controllers
     {
         // GET student/12345/lessons.ical
         [Produces("text/calendar")]
-        [HttpGet("{studentNumber}/lessons.ics")]
+        [HttpGet("{studentNumber}/lessons.ical")]
         public async Task<IActionResult> Get(string studentNumber)
         {
             Trace.TraceInformation("Request for {0}", studentNumber);
