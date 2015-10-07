@@ -3,7 +3,7 @@
     <script>
         function generateLink() {
             var number = document.getElementById("number").value;
-            var link = "webcal://" + window.location.host + "/student/" + number + "/lessons.ical"
+            var link = "webcal://" + window.location.host + "/student/" + number + "/lessons.ics"
 
             document.getElementById("link").href = link;
             document.getElementById("link").text = "zum Kalender";

@@ -28,11 +28,9 @@ namespace HtwLessonPlan
                 sw.AppendLine("SUMMARY:" + calendarEvent.Title);
                 sw.AppendLine("DESCRIPTION: Raum" + calendarEvent.Room);
                 sw.AppendLine("LOCATION:" + calendarEvent.Room);
-                sw.AppendLine("DTSTAMP:"+DateTime.UtcNow.ToString("o"));
+                sw.AppendLine("DTSTAMP:"+DateTime.UtcNow.ToString("yyyyMMdd'T'HHmmss")+"Z");
                 sw.AppendLine("DTSTART:" + strStart + "Z");
-                sw.AppendLine("DTEND:" + strEnd + "Z");
-                sw.AppendLine("TZOFFSETFROM:0000");
-                sw.AppendLine("TZOFFSETTO:0000");                
+                sw.AppendLine("DTEND:" + strEnd + "Z");                       
                 sw.AppendLine("END:VEVENT");
             }            
             sw.AppendLine("END:VCALENDAR");            
