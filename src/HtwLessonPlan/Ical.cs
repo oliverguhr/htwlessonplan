@@ -27,6 +27,8 @@ namespace HtwLessonPlan
                 sw.AppendLine("LOCATION:" + calendarEvent.Room);
                 sw.AppendLine("DTSTART:" + strStart + "Z");
                 sw.AppendLine("DTEND:" + strEnd + "Z");
+                sw.AppendLine("TZOFFSETFROM:0000");
+                sw.AppendLine("TZOFFSETTO:0000");                
                 sw.AppendLine("END:VEVENT");
             }            
             sw.AppendLine("END:VCALENDAR");            
