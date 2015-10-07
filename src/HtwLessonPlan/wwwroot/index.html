@@ -6,7 +6,7 @@
             var link = "webcal://" + window.location.host + "/student/" + number + "/lessons.ical"
 
             document.getElementById("link").href = link;
-            document.getElementById("link").text = "Kalendar einbinden";
+            document.getElementById("link").text = "zum Kalender";
 
             return false;
         }
@@ -14,12 +14,20 @@
     </script>
 </head>
 <body>
-    <h1>HTW Online Kalendar</h1>
+    <h1>HTW Online Kalender</h1>
 
     <p>
         <label>Matrikelnummer </label><input id="number" type="number" onkeyup="generateLink()" />
     </p>
 
     <h2><a id="link" href=""></a></h2>
+
+    <h3>in Google Kalendar einbinden</h3>
+    <p>
+        Um den Kalendar in Google Kalender nutzen zu können, klicke im Linken <br /> 
+        Menü auf den Pfeil neben "Weitere Kalender" und dann auf über URL hinzufügen. <br />          
+        kopiere dann den oberen Link in das Dialogfenster.
+    </p>
+    <img src="googlecalendar.png" width="510" height="203" />
 </body>
 </html>
