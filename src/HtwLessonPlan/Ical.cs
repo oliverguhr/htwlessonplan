@@ -18,9 +18,9 @@ namespace HtwLessonPlan
             foreach (var calendarEvent in events)
             {
                 // Create string to format start time properly.
-                string strStart = calendarEvent.Start.ToUniversalTime().ToString("yyyyMMdd'T'HHmmss");
+                string strStart = calendarEvent.Start.ToString("yyyyMMdd'T'HHmmss");
                 // Create string to format end time properly.
-                string strEnd = calendarEvent.End.ToUniversalTime().ToString("yyyyMMdd'T'HHmmss");                           
+                string strEnd = calendarEvent.End.ToString("yyyyMMdd'T'HHmmss");                           
                 
                 sw.AppendLine("BEGIN:VEVENT");
                 sw.AppendFormat("UID:{0}@htw-dresden.de",DateTime.Now.Ticks);
@@ -28,9 +28,9 @@ namespace HtwLessonPlan
                 sw.AppendLine("SUMMARY:" + calendarEvent.Title);
                 sw.AppendLine("DESCRIPTION: Raum" + calendarEvent.Room);
                 sw.AppendLine("LOCATION:" + calendarEvent.Room);
-                sw.AppendLine("DTSTAMP:"+DateTime.UtcNow.ToString("yyyyMMdd'T'HHmmss")+"Z");
-                sw.AppendLine("DTSTART:" + strStart + "Z");
-                sw.AppendLine("DTEND:" + strEnd + "Z");                       
+                sw.AppendLine("DTSTAMP:"+DateTime.Now.ToString("yyyyMMdd'T'HHmmss"));
+                sw.AppendLine("DTSTART;TZID=Europe/Berlin:" + strStart );
+                sw.AppendLine("DTEND;TZID=Europe/Berlin:" + strEnd );                       
                 sw.AppendLine("END:VEVENT");
             }            
             sw.AppendLine("END:VCALENDAR");            
