@@ -1,4 +1,5 @@
 ﻿using HtwLessonPlan.Model;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -22,9 +23,12 @@ namespace HtwLessonPlan
                 string strEnd = calendarEvent.End.ToUniversalTime().ToString("yyyyMMdd'T'HHmmss");                           
                 
                 sw.AppendLine("BEGIN:VEVENT");
+                sw.AppendFormat("UID:{0}@htw-dresden.de",DateTime.Now.Ticks);
+                sw.AppendLine();
                 sw.AppendLine("SUMMARY:" + calendarEvent.Title);
                 sw.AppendLine("DESCRIPTION: Raum" + calendarEvent.Room);
                 sw.AppendLine("LOCATION:" + calendarEvent.Room);
+                sw.AppendLine("DTSTAMP:"+DateTime.UtcNow.ToString("o"));
                 sw.AppendLine("DTSTART:" + strStart + "Z");
                 sw.AppendLine("DTEND:" + strEnd + "Z");
                 sw.AppendLine("TZOFFSETFROM:0000");
