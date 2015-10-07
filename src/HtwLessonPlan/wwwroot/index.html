@@ -1,5 +1,6 @@
 ﻿<html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script>
         function generateLink() {
             var number = document.getElementById("number").value;
@@ -17,17 +18,17 @@
     <h1>HTW Online Kalender</h1>
 
     <p>
-        <label>Matrikelnummer </label><input id="number" type="number" onkeyup="generateLink()" />
+        <span>Matrikelnummer </span><input id="number" type="number" onkeyup="generateLink()" />
     </p>
 
     <h2><a id="link" href=""></a></h2>
 
     <h3>in Google Kalendar einbinden</h3>
-    <p>
-        Um den Kalendar in Google Kalender nutzen zu können, klicke im Linken <br /> 
-        Menü auf den Pfeil neben "Weitere Kalender" und dann auf über URL hinzufügen. <br />          
+    <p style="width:100%;max-width:510px;">
+        Um den Kalendar in Google Kalender nutzen zu können, klicke im Linken 
+        Menü auf den Pfeil neben "Weitere Kalender" und dann auf über URL hinzufügen.         
         kopiere dann den oberen Link in das Dialogfenster.
     </p>
-    <img src="googlecalendar.png" width="510" height="203" />
+    <img src="googlecalendar.png" style="width:100%;max-width:510px;"/>
 </body>
 </html>
