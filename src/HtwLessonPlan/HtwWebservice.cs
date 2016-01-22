@@ -28,9 +28,18 @@ namespace HtwLessonPlan
 
         public async Task<List<CalendarEvent>> LoadCalendar(string studentNumber)
         {
-            var link = await GetCsvLink(studentNumber);
+            List<string> csv;
+            try
+            {
+                var link = await GetCsvLink(studentNumber);
 
-            var csv = await GetCsvData(link);
+                csv = await GetCsvData(link);   
+            }
+            catch (System.Exception ex)
+            {
+                log.LogError("error downloading data", ex);
+                throw;
+            }            
 
             return ParseCsv(csv);
         }
@@ -78,8 +87,7 @@ namespace HtwLessonPlan
         private async Task<List<string>> GetCsvData(Uri csvLink)
         {
             HttpClient request = new HttpClient();
-            var csv = Encoding.GetEncoding("latin1").GetString(await request.GetByteArrayAsync(csvLink));
-            log.LogInformation(csv);
+            var csv = Encoding.GetEncoding("latin1").GetString(await request.GetByteArrayAsync(csvLink));            
             var lines = csv.Split(new string[] { "\r\n", "\n", "\r" }, StringSplitOptions.None);
             return lines.Skip(1).ToList();
         }
