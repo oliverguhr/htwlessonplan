@@ -2,7 +2,7 @@
 
 namespace HtwLessonPlan.Model
 {
-    internal struct CalendarEvent
+    public struct CalendarEvent
     {
         public string Title { get; set; }
         public string Room { get; set; }

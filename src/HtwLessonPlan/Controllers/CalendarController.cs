@@ -6,6 +6,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using Microsoft.Extensions.Logging;
+using HtwLessonPlan;
 
 namespace HtwLessonPlan.Controllers
 {
@@ -13,10 +14,12 @@ namespace HtwLessonPlan.Controllers
     public class CalendarController : Controller
     {
         private ILogger log;
+        private IHtwWebService service;
 
-        public CalendarController(ILoggerFactory loggerFactory)
+        public CalendarController(ILoggerFactory loggerFactory, IHtwWebService htwWebService)
         {
             log = loggerFactory.CreateLogger("CalendarController");            
+            service = htwWebService;
         }
 
         // GET student/12345/lessons.ical
@@ -26,13 +29,11 @@ namespace HtwLessonPlan.Controllers
         {
             log.LogInformation("Request for {0}", studentNumber);
 
-            HtwWebservice htw = new HtwWebservice(new Uri("http://www2.htw-dresden.de/~rawa/cgi-bin/auf/raiplan_kal.php"));
-
             List<CalendarEvent> calendar = new List<CalendarEvent>();
 
             try
             {
-                calendar = await htw.LoadCalendar(studentNumber);
+                calendar = await service.LoadCalendar(studentNumber);
             }
             catch (Exception ex)
             {
