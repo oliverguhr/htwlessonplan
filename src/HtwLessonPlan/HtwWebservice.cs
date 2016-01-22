@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using System.Globalization;
 
 namespace HtwLessonPlan
 {
@@ -43,10 +44,12 @@ namespace HtwLessonPlan
                 var row = entry.Split(',').Select(x => x.Replace("\"", string.Empty)).ToList();
 
                 CalendarEvent calendarEvent = new CalendarEvent();
-
+                
+                var culture = new CultureInfo("de-DE");
+                
                 calendarEvent.Title = row.First();
-                calendarEvent.Start = DateTime.Parse(row[1] + " " + row[2]);
-                calendarEvent.End = DateTime.Parse(row[3] + " " + row[4]);
+                calendarEvent.Start = DateTime.Parse(row[1] + " " + row[2], culture);
+                calendarEvent.End = DateTime.Parse(row[3] + " " + row[4], culture);
                 calendarEvent.Room = row[16];
 
                 events.Add(calendarEvent);
