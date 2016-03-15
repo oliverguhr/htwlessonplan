@@ -5,26 +5,44 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using System.Globalization;
 
 namespace HtwLessonPlan
 {
-    internal class HtwWebservice
+    public interface IHtwWebService
+    {
+        Task<List<CalendarEvent>> LoadCalendar(string studentNumber);   
+    }
+    
+    public class HtwWebservice : IHtwWebService
     {
         public Uri ApiAdress { get; set; }
+         private ILogger log;
 
-        public HtwWebservice(Uri apiAdress)
+        public HtwWebservice(ILoggerFactory loggerFactory)
         {
-            ApiAdress = apiAdress;
+            ApiAdress = new Uri("http://www2.htw-dresden.de/~rawa/cgi-bin/auf/raiplan_kal.php");
+            log = loggerFactory.CreateLogger("HtwWebservice"); 
         }
 
-        internal async Task<List<CalendarEvent>> LoadCalendar(string studentNumber)
+        public async Task<List<CalendarEvent>> LoadCalendar(string studentNumber)
+        {
+            List<string> csv;
+            try
         {
             var link = await GetCsvLink(studentNumber);
 
-            var csv = await GetCsvData(link);
+                csv = await GetCsvData(link);   
+            }
+            catch (System.Exception ex)
+            {
+                log.LogError("error downloading data", ex);
+                throw;
+            }            
 
             return CsvVCardConverter.ParseCsv(csv);
-        }   
+        }
 
         private async Task<Uri> GetCsvLink(string studentNumber)
         {
@@ -47,7 +65,7 @@ namespace HtwLessonPlan
         private async Task<List<string>> GetCsvData(Uri csvLink)
         {
             HttpClient request = new HttpClient();
-            var csv = Encoding.GetEncoding(1252).GetString(await request.GetByteArrayAsync(csvLink));
+            var csv = Encoding.GetEncoding("latin1").GetString(await request.GetByteArrayAsync(csvLink));            
             var lines = csv.Split(new string[] { "\r\n", "\n", "\r" }, StringSplitOptions.None);
             return lines.Skip(1).ToList();
         }
