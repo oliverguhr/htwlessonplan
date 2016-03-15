@@ -23,28 +23,8 @@ namespace HtwLessonPlan
 
             var csv = await GetCsvData(link);
 
-            return ParseCsv(csv);
-        }
-
-        private List<CalendarEvent> ParseCsv(List<string> times)
-        {
-            List<CalendarEvent> events = new List<CalendarEvent>();
-
-            foreach (var entry in times)
-            {
-                var row = entry.Split(',').Select(x => x.Replace("\"", string.Empty)).ToList();
-
-                CalendarEvent calendarEvent = new CalendarEvent();
-
-                calendarEvent.Title = row.First();
-                calendarEvent.Start = DateTime.Parse(row[1] + " " + row[2]);
-                calendarEvent.End = DateTime.Parse(row[3] + " " + row[4]);
-                calendarEvent.Room = row[16];
-
-                events.Add(calendarEvent);
-            }
-            return events;
-        }
+            return CsvVCardConverter.ParseCsv(csv);
+        }   
 
         private async Task<Uri> GetCsvLink(string studentNumber)
         {
